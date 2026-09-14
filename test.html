@@ -1,14 +1,138 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>My First Chatbot</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        #chat {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #1f2937;
+            padding: 20px;
+            border-radius: 12px;
+            min-height: 300px;
+        }
+
+        input {
+            padding: 12px;
+            width: 60%;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .user {
+            color: #93c5fd;
+        }
+
+        .bot {
+            color: #86efac;
+        }
+    </style>
+</head>
+
 <body>
 
-<h1>My First Website 🤖</h1>
+    <h1>🤖 My Chatbot</h1>
 
-<button onclick="document.getElementById('hello').innerHTML='🎉 IT WORKS!'">
-    Click Me
-</button>
+    <div id="chat">
+        <p class="bot">
+            🤖 Bot: Hi! Ask me something!
+        </p>
+    </div>
 
-<p id="hello"></p>
+    <input
+        id="message"
+        placeholder="Type your message..."
+    >
+
+    <button onclick="chatWithBot()">
+        Send
+    </button>
+
+    <script>
+
+        function chatWithBot() {
+
+            let input =
+                document.getElementById("message");
+
+            let message =
+                input.value.toLowerCase();
+
+            let chat =
+                document.getElementById("chat");
+
+            if (message === "") {
+                return;
+            }
+
+            chat.innerHTML +=
+                "<p class='user'>👤 You: " +
+                input.value +
+                "</p>";
+
+            let reply = "";
+
+            if (message.includes("hello") ||
+                message.includes("hi")) {
+
+                reply =
+                    "Hello! 👋 Nice to meet you!";
+
+            } else if (message.includes("name")) {
+
+                reply =
+                    "I'm your first chatbot! 🤖";
+
+            } else if (message.includes("how are you")) {
+
+                reply =
+                    "I'm doing great! Thanks for asking! 😄";
+
+            } else if (message.includes("help")) {
+
+                reply =
+                    "You can say hello, ask my name, or ask how I am!";
+
+            } else if (message.includes("bye")) {
+
+                reply =
+                    "Goodbye! 👋 Come back soon!";
+
+            } else {
+
+                reply =
+                    "Hmm... I don't know how to answer that yet. 🤔";
+
+            }
+
+            chat.innerHTML +=
+                "<p class='bot'>🤖 Bot: " +
+                reply +
+                "</p>";
+
+            input.value = "";
+
+        }
+
+    </script>
 
 </body>
 </html>
